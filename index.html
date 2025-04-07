@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Tomato Leaf Disease Classifier 🍅</title>
+  </head>
+  <body style="font-family: sans-serif; text-align: center">
+    <h1>🍅 Tomato Leaf Disease Classifier</h1>
+
+    <form action="/" method="post" enctype="multipart/form-data">
+      <input type="file" name="image" required /><br /><br />
+      <button type="submit">Predict Disease</button>
+    </form>
+
+    {% if image %}
+    <h2>Uploaded Image:</h2>
+    <img
+      src="data:image/jpeg;base64,{{ image|b64encode }}"
+      width="300"
+    /><br /><br />
+    {% endif %} {% if prediction %}
+    <h2>Diagnosis:</h2>
+    {% if "healthy" in prediction.lower() %}
+    <p style="color: green"><strong>✅ {{ prediction }}</strong></p>
+    {% else %}
+    <p style="color: red"><strong>⚠️ {{ prediction }}</strong></p>
+    <p><strong>Recommended actions:</strong></p>
+    <ul style="text-align: left; display: inline-block">
+      <li>Isolate affected plants</li>
+      <li>Consult agricultural expert</li>
+      <li>Use appropriate treatments</li>
+    </ul>
+    {% endif %} {% endif %}
+  </body>
+</html>
