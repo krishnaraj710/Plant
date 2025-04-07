@@ -5,3 +5,4 @@ joblib
 scikit-image
 scikit-learn
 Pillow
+flask
